@@ -1,8 +1,8 @@
+from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 
-from materials.models import Lesson, Course
-from materials.serializer import LessonSerializer, CourseSerializer
+from materials.models import Course, Lesson
+from materials.serializer import CourseSerializer, LessonSerializer
 
 
 class LessonViewSet(ModelViewSet):
