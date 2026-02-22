@@ -1,9 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView
 from rest_framework.filters import OrderingFilter
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
 
-from users.models import User, Payment
-from users.serializer import UserSerializer, PaymentSerializer
+from users.models import Payment, User
+from users.serializer import PaymentSerializer, UserSerializer
 
 
 class UserProfileView(RetrieveUpdateAPIView):

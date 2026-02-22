@@ -20,10 +20,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "rest_framework",
     "django_filters",
-
     "users",
     "materials",
 ]
@@ -109,6 +107,4 @@ MEDIA_ROOT = BASE_DIR / "media"
 AUTH_USER_MODEL = "users.User"
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
-}
+REST_FRAMEWORK = {"DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]}
