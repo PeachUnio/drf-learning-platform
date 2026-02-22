@@ -53,10 +53,10 @@ class User(AbstractUser):
 
 
 class Payment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="Пользователь", related_name="payments")
-    date = models.ForeignKey(auto_now_add=True, verbose_name="Дата платежа")
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Пользователь", related_name="payments")
+    date = models.DateTimeField(auto_now_add=True, verbose_name="Дата платежа")
     paid_curse = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Оплаченный курс", related_name="payments")
-    paid_lesson = models.OneToOneField(Lesson, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Оплаченный урок", related_name="payments")
+    paid_lesson = models.ForeignKey(Lesson, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Оплаченный урок", related_name="payments")
     payment_amount = models.IntegerField(verbose_name="Сумма оплаты")
 
     PAYMENT_CASH = "cash"
