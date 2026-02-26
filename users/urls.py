@@ -5,7 +5,6 @@ from users.apps import UsersConfig
 from users.views import PaymentListAPIView, UserProfileView, UserCreateAPIView, UserDestroyAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-
 app_name = UsersConfig.name
 
 urlpatterns = [
