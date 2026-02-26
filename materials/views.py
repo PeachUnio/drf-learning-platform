@@ -9,10 +9,20 @@ class LessonViewSet(ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
 
+    def perform_create(self, serializer):
+        lesson = serializer.save()
+        lesson.auth = self.request.user
+        lesson.save()
+
 
 class CourseCreateAPIView(CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+    def perform_create(self, serializer):
+        course = serializer.save()
+        course.auth = self.request.user
+        course.save()
 
 
 class CourseListAPIView(ListAPIView):
