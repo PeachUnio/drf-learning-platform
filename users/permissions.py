@@ -10,15 +10,6 @@ class IsModer(permissions.BasePermission):
         return request.user.groups.filter(name="moders").exists()
 
 
-class IsNotModer(permissions.BasePermission):
-    """Проверяет, является ли пользователь не модератором."""
-
-    def has_permission(self, request, view):
-        if not request.user.groups.filter(name="moders").exists():
-            return True
-        return False
-
-
 class IsAuth(permissions.BasePermission):
     """Проверяет, является ли пользователь автором."""
 

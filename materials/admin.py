@@ -1,5 +1,6 @@
 from django.contrib import admin
-from materials.models import Lesson, Course
+
+from materials.models import Course, Lesson
 
 
 @admin.register(Lesson)

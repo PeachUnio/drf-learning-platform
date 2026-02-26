@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from materials.models import Course, Lesson
 from materials.serializer import CourseDetailSerializer, CourseSerializer, LessonSerializer
-from users.permissions import IsModer, IsAuth, IsNotModer
+from users.permissions import IsAuth, IsModer
 
 
 class LessonViewSet(ModelViewSet):
