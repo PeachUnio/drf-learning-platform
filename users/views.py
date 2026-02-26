@@ -1,6 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateAPIView, UpdateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateAPIView, UpdateAPIView, DestroyAPIView, UpdateAPIView
 
 from users.models import Payment, User
 from users.serializer import PaymentSerializer, UserSerializer, UserCreateSerializer
@@ -9,6 +9,14 @@ from users.serializer import PaymentSerializer, UserSerializer, UserCreateSerial
 class UserCreateAPIView(CreateAPIView):
     serializer_class = UserCreateSerializer
     queryset = User.objects.all()
+
+
+class UserUpdateAPIView(UpdateAPIView):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    def get_object(self):
+        return self.request.user
 
 
 class UserProfileView(RetrieveUpdateAPIView):
