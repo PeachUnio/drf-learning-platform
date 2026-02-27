@@ -17,9 +17,10 @@ class CourseSerializer(ModelSerializer):
 
 class LessonForCourseSerializer(ModelSerializer):
     """Отдельный сериализатор для уроков внутри курса"""
+
     class Meta:
         model = Lesson
-        fields = ['id', 'name', 'description', 'linc']
+        fields = ["id", "name", "description", "linc"]
 
 
 class CourseDetailSerializer(ModelSerializer):
