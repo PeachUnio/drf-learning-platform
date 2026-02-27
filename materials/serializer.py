@@ -1,9 +1,11 @@
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
 
 from materials.models import Course, Lesson
+from materials.validators import validate_youtube_linc
 
 
 class LessonSerializer(ModelSerializer):
+    linc = CharField(validators=[validate_youtube_linc])
     class Meta:
         model = Lesson
         fields = "__all__"
