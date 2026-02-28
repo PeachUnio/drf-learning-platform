@@ -2,6 +2,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField, C
 
 from materials.models import Course, Lesson
 from materials.validators import validate_youtube_linc
+from users.models import Subscription
 
 
 class LessonSerializer(ModelSerializer):
@@ -12,6 +13,17 @@ class LessonSerializer(ModelSerializer):
 
 
 class CourseSerializer(ModelSerializer):
+    is_subscribed = SerializerMethodField()
+
+    def get_is_subscribed(self, obj):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return Subscription.objects.filter(
+                user=request.user,
+                course=obj
+            ).exists()
+        return False
+
     class Meta:
         model = Course
         fields = "__all__"
