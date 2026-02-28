@@ -3,7 +3,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from users.apps import UsersConfig
-from users.views import PaymentListAPIView, UserCreateAPIView, UserDestroyAPIView, UserProfileView
+from users.views import PaymentListAPIView, UserCreateAPIView, UserDestroyAPIView, UserProfileView, SubscriptionView
 
 app_name = UsersConfig.name
 
@@ -15,4 +15,6 @@ urlpatterns = [
     path("profile/delite/", UserDestroyAPIView.as_view(), name="profile_delite"),
     # платежи
     path("payments/", PaymentListAPIView.as_view(), name="payment_list"),
+    # подписки
+    path('subscription/', SubscriptionView.as_view(), name='subscription'),
 ]
