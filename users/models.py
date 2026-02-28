@@ -81,3 +81,7 @@ class Payment(models.Model):
     PAYMENT_CHOICES = [(PAYMENT_CASH, "Оплата наличными"), (PAYMENT_TRANSFER, "Оплата переводом на счет")]
 
     type_of_payment = models.CharField(max_length=50, choices=PAYMENT_CHOICES, verbose_name="Статус")
+
+    class Meta:
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
