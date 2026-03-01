@@ -7,6 +7,7 @@ from users.models import User, Subscription
 
 class SubscriptionTestCase(APITestCase):
     """Тесты для подписки на обновления курса"""
+
     def setUp(self):
         self.user = User.objects.create(email="test@mail.com")
         self.other_user = User.objects.create(email="other@mail.com")
@@ -20,10 +21,7 @@ class SubscriptionTestCase(APITestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()["message"], f"Подписка на курс '{self.course.name}' оформлена")
-        self.assertTrue(Subscription.objects.filter(
-            user=self.user,
-            course=self.course
-        ).exists())
+        self.assertTrue(Subscription.objects.filter(user=self.user, course=self.course).exists())
 
     def test_subscription_delete(self):
         """Тест удаления подписки (отписаться от курса)"""
@@ -33,10 +31,7 @@ class SubscriptionTestCase(APITestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()["message"], f"Подписка на курс '{self.course.name}' удалена")
-        self.assertFalse(Subscription.objects.filter(
-            user=self.user,
-            course=self.course
-        ).exists())
+        self.assertFalse(Subscription.objects.filter(user=self.user, course=self.course).exists())
 
     def test_subscription_without_auth(self):
         """Тест подписки без аутентификации"""
@@ -75,7 +70,7 @@ class SubscriptionInCourseSerializerTestCase(APITestCase):
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue(data['results'][0]['is_subscribed'])
+        self.assertTrue(data["results"][0]["is_subscribed"])
 
     def test_course_list_without_subscription(self):
         """Тест, что у пользователя без подписки is_subscribed = False"""
@@ -84,7 +79,7 @@ class SubscriptionInCourseSerializerTestCase(APITestCase):
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertFalse(data['results'][0]['is_subscribed'])
+        self.assertFalse(data["results"][0]["is_subscribed"])
 
     def test_course_list_unauth(self):
         """Тест, что неавторизованный пользователь получает 401"""

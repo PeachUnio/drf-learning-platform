@@ -46,7 +46,7 @@ class CourseListAPIView(ListAPIView):
     pagination_class = CustomPagination
 
     def get_serializer_context(self):
-        return {'request': self.request}
+        return {"request": self.request}
 
 
 class CourseRetrieveAPIView(RetrieveAPIView):

@@ -45,24 +45,19 @@ class PaymentListAPIView(ListAPIView):
 
 class SubscriptionView(APIView):
     """API для подписки/отписки от курса"""
+
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
         user = request.user
-        course_id = request.data.get('course_id')
+        course_id = request.data.get("course_id")
 
         if not course_id:
-            return Response(
-                {"error": "Не указан ID курса"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({"error": "Не указан ID курса"}, status=status.HTTP_400_BAD_REQUEST)
 
         course = get_object_or_404(Course, id=course_id)
 
-        subscription = Subscription.objects.filter(
-            user=user,
-            course=course
-        ).first()
+        subscription = Subscription.objects.filter(user=user, course=course).first()
 
         if subscription:
             subscription.delete()

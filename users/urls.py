@@ -16,5 +16,5 @@ urlpatterns = [
     # платежи
     path("payments/", PaymentListAPIView.as_view(), name="payment_list"),
     # подписки
-    path('subscription/', SubscriptionView.as_view(), name='subscription'),
+    path("subscription/", SubscriptionView.as_view(), name="subscription"),
 ]
