@@ -81,3 +81,23 @@ class Payment(models.Model):
     PAYMENT_CHOICES = [(PAYMENT_CASH, "Оплата наличными"), (PAYMENT_TRANSFER, "Оплата переводом на счет")]
 
     type_of_payment = models.CharField(max_length=50, choices=PAYMENT_CHOICES, verbose_name="Статус")
+
+    class Meta:
+        verbose_name = "Платеж"
+        verbose_name_plural = "Платежи"
+
+
+class Subscription(models.Model):
+    """Подписка пользователя на обновления курса"""
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="subscriptions", verbose_name="Пользователь")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="subscribers", verbose_name="Курс")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата подписки")
+
+    class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
+        unique_together = ("user", "course")
+
+    def __str__(self):
+        return f"{self.user.email} подписан на {self.course.name}"
